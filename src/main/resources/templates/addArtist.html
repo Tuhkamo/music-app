@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Adding page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Add artist:</h1>
+	<div>
+		<form th:object="${artist}" th:action="@{saveArtist}" action="#" method="post">
+			<label for="name">Name: </label> <input type="text" id="name"
+				th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="years_active">Years Active: </label> <input type="text" id="years_active"
+				th:field="*{years_active}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+				
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

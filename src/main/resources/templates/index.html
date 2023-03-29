@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title>Music-Info</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>
+		Music-Info: <a sec:authorize="isAnonymous()" href="/login"
+			class="btn btn-success">Login</a>
+	</h1>
+	<h2>HINT: admin ^</h2>
+
+	<table class="table table-striped">
+		<tr>
+			<th>Artists</th>
+			<th>Years active in (2023)</th>
+		</tr>
+		<tr th:each="artist : ${artists}">
+			<td th:text="${artist.name}"></td>
+			<td th:text="${artist.years_active}"></td>
+		</tr>
+		<tr>
+			<th>Albums</th>
+			<th>Genre</th>
+			<th>Release Year</th>
+			<th>Length</th>
+			<th>Artist</th>
+		</tr>
+		<tr th:each="album : ${albums}">
+			<td th:text="${album.name}"></td>
+			<td th:text="${album.genre}"></td>
+			<td th:text="${album.year}"></td>
+			<td
+				th:text="${#numbers.formatDecimal(album.length, 0, 'COMMA', 2, 'POINT')}"></td>
+			<td th:text="${album.getArtist().getName()} ?: 'UNKNOWN'"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"
+				class="btn btn-xs btn-danger">Delete</td>
+		</tr>
+		<tr>
+			<th>Songs</th>
+			<th>Length</th>
+			<th>BPM</th>
+			<th>Album</th>
+		</tr>
+		<tr th:each="song : ${songs}">
+			<td th:text="${song.name}"></td>
+			<td
+				th:text="${#numbers.formatDecimal(song.length, 0, 'COMMA', 2, 'POINT')}"></td>
+			<td th:text="${song.bpm}"></td>
+			<td th:text="${song.getAlbum().getName()}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"
+				class="btn btn-xs btn-danger">Delete</td>
+
+		</tr>
+	</table>
+	<div sec:authorize="hasAuthority('ADMIN')">
+		<a href="/addArtist" class="btn btn-success">Add Artist</a>
+		<a href="/addAlbum" class="btn btn-success">Add Album</a>
+		<a href="/addSong" class="btn btn-success">Add Song</a>
+	</div>
+
+	<div class="col-md-4" style="padding: 20px 20px"
+		sec:authorize="isAuthenticated()">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+		</form>
+	</div>
+
+</body>
+</html>
