@@ -5,29 +5,45 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
-<body>
-	<h1>Add song:</h1>
-	<div>
-		<form th:object="${song}" th:action="@{saveSong}" action="#" method="post">
-			<label for="name">Name </label> <input type="text" id="name"
-				th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<label for="length">Length </label> <input type="text" id="length"
-				th:field="*{length}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<label for="bpm">BPM - Beats per minute </label> <input type="text"
-				th:field="*{bpm}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-				<label for="albumlist">Album</label>
-			 <select id="albumlist" th:field="*{album}" class="form-control">
-       			<option th:each="album : ${albums}" th:value="${album.album_id}" th:text="${album.name}"></option>
-    		</select>
-				
-			<div style="clear: both; display: block; height: 10px;"></div>
+<body class="table-dark">
+	<div class="col-md-5">
+		<h1>Add song:</h1>
+		<form th:object="${song}" th:action="@{saveSong}" action="#"
+			method="post">
+			<table class="table table-striped table-dark">
+				<tr>
+					<td><label for="name">* Name: </label> <input type="text"
+						id="name" th:field="*{name}" /></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+				</tr>
+				<tr>
+					<td><label for="length">* Length: </label> <input
+						type="number" step="0.01" th:field="*{length}" /></td>
+						<td th:if="${#fields.hasErrors('length')}" th:errors="*{length}"></td>
+				</tr>
+				<tr>
+					<td><label for="bpm">* BPM - Beats Per Minute: </label> <input
+						type="number"  th:field="*{bpm}" /></td>
+						<td th:if="${#fields.hasErrors('bpm')}" th:errors="*{bpm}"></td>
+				</tr>
+				<tr>
+					<td><label for="albumlist">* Album: </label> <select
+						id="albumlist" th:field="*{album}" class="form-control">
+							<option th:each="album : ${albums}"
+								th:value="${album.album_id}" th:text="${album.name}"></option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><label for="artistlist">* Artist: </label> <select
+						id="artistlist" th:field="*{artist}" class="form-control">
+							<option th:each="artist : ${artists}"
+								th:value="${artist.artist_id}" th:text="${artist.name}"></option>
+					</select></td>
+				</tr>
+			</table>
+			<div class="col-md-5">
 			<input class="btn btn-success" type="submit" value="Save"></input>
+			</div>
 		</form>
 	</div>
 </body>

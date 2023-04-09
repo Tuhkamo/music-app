@@ -13,6 +13,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Album {
@@ -21,31 +24,35 @@ public class Album {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long album_id;
 	
-	private String name, genre, art_src;
+	@NotEmpty(message = "Cannot be empty")
+	private String name;
+	
+	private String genre;
+	
+	@NotNull(message = "Insert a positive number")
 	private Double length;
-	private Integer song_amount;
 	
 	@Column(name="release_year")
+	@NotNull(message = "Insert a positive number")
+	@Min(value=0, message = "Insert a positive number")
 	private Integer year;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "album")
-	@JsonIgnoreProperties("album")
-	private List<Song> songs;
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("albums")
 	@JoinColumn(name = "artist_id")
 	private Artist artist;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "album")
+	@JsonIgnoreProperties("album")
+	private List<Song> songs;
+	
 	public Album() {}
 
-	public Album(String name, String genre, String art_src, Double length, Integer song_amount, Integer year, Artist artist) {
+	public Album(String name, String genre, Double length, Integer year, Artist artist) {
 		super();
 		this.name = name;
 		this.genre = genre;
-		this.art_src = art_src;
 		this.length = length;
-		this.song_amount = song_amount;
 		this.year = year;
 		this.artist = artist;
 	}
@@ -74,13 +81,6 @@ public class Album {
 		this.genre = genre;
 	}
 
-	public String getArt_src() {
-		return art_src;
-	}
-
-	public void setArt_src(String art_src) {
-		this.art_src = art_src;
-	}
 
 	public Double getLength() {
 		return length;
@@ -90,13 +90,6 @@ public class Album {
 		this.length = length;
 	}
 
-	public Integer getSong_amount() {
-		return song_amount;
-	}
-
-	public void setSong_amount(Integer song_amount) {
-		this.song_amount = song_amount;
-	}
 
 	public Integer getYear() {
 		return year;

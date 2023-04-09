@@ -56,7 +56,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 }
 
 body {
-	margin: 0;
+	margin: 1rem;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -202,7 +202,8 @@ svg {
 }
 
 table {
-	border-collapse: collapse
+	border-collapse: collapse;
+	margin: 1rem;
 }
 
 caption {
@@ -340,7 +341,7 @@ template {
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-	margin-bottom: .5rem;
+	margin: 1rem;
 	font-weight: 500;
 	line-height: 1.2
 }
@@ -569,6 +570,10 @@ pre code {
 	flex-wrap: wrap;
 	margin-right: -15px;
 	margin-left: -15px
+}
+
+.column {
+  padding: 5px;
 }
 
 .no-gutters {
@@ -9627,7 +9632,7 @@ a.text-dark:focus, a.text-dark:hover {
 		size: a3
 	}
 	body {
-		min-width: 992px !important
+		min-width: 992px !important;
 	}
 	.container {
 		min-width: 992px !important

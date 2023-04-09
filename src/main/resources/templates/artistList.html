@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title>Music-Info</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body class="table-dark">
+	<div class="col-md-11">
+		<h1>
+			Music-Info: Artists <a href="/search" class="btn btn-info">Query
+				Music Data</a> <a href="/index" class="btn btn-info">Return</a>
+		</h1>
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Artists</th>
+				<th scope="col">Formed In / Started</th>
+				<th scope="col">Description</th>
+				<th scope="col">Are they active? (true/false)
+				<th sec:authorize="hasAuthority('ADMIN')"><a href="/addArtist"
+					class="btn btn-success">Add Artist</a></th>
+			</tr>
+			<tr th:each="artist : ${artists}">
+				<td th:text="${artist.artist_id}"></td>
+				<td th:text="${artist.name}"></td>
+				<td th:text="${artist.year_formed}"></td>
+				<td th:text="${artist.description}"></td>
+				<td th:text="${artist.active}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/deleteArtist/{id}(id=${artist.artist_id})}"
+					class="btn btn-xs btn-danger">Delete Artist</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

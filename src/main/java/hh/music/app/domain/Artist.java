@@ -10,6 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Artist {
@@ -18,8 +21,16 @@ public class Artist {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long artist_id;
 	
-	private String name;
-	private Integer years_active;
+	@NotEmpty(message = "Cannot be empty")
+	private String name, country;
+	
+	private String description;
+	
+	@NotNull(message = "Insert a positive number")
+	@Min(value = 0L, message = "Insert a positive number")
+	private Integer year_formed;
+	
+	private Boolean active;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "artist")
 	@JsonIgnoreProperties("artist")
@@ -27,10 +38,13 @@ public class Artist {
 	
 	public Artist() {}
 
-	public Artist(String name, Integer years_active) {
+	public Artist(String name, Integer year_formed, String description, String country, Boolean active) {
 		super();
 		this.name = name;
-		this.years_active = years_active;
+		this.year_formed = year_formed;
+		this.description = description;
+		this.country = country;
+		this.active = active;
 	}
 
 	public Long getArtist_id() {
@@ -49,12 +63,36 @@ public class Artist {
 		this.name = name;
 	}
 
-	public Integer getYears_active() {
-		return years_active;
+	public Integer getYear_formed() {
+		return year_formed;
 	}
 
-	public void setYears_active(Integer years_active) {
-		this.years_active = years_active;
+	public void setYear_formed(Integer year_formed) {
+		this.year_formed = year_formed;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public List<Album> getAlbums() {

@@ -2,12 +2,16 @@ package hh.music.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Song {
@@ -15,8 +19,14 @@ public class Song {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long song_id;
+	
+	@NotEmpty(message = "Cannot be empty")
 	private String name;
+	
+	@NotNull(message = "Cannot be null")
 	private Double length;
+	
+	@Min(value = 1L, message = "Insert a positive number")
 	private int bpm;
 	
 	@ManyToOne
@@ -90,7 +100,7 @@ public class Song {
 	
 	@Override
 	public String toString() {
-		return "Song [id=" + song_id + ", name=" + name + ", length=" + length + ", bpm=" + bpm + ", isbn=" + ", album=" + this.getAlbum().getName() + ", artist=" + this.getArtist().getName() +"]";
+		return "Song [id=" + song_id + ", name=" + name + ", length=" + length + ", bpm=" + bpm + ", album=" + this.getAlbum().getName() + ", artist=" + this.getArtist().getName() +"]";
 	}
 	
 	

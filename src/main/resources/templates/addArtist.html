@@ -3,22 +3,42 @@
 <head>
 <title>Adding page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
-<body>
-	<h1>Add artist:</h1>
-	<div>
-		<form th:object="${artist}" th:action="@{saveArtist}" action="#" method="post">
-			<label for="name">Name: </label> <input type="text" id="name"
-				th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<label for="years_active">Years Active: </label> <input type="text" id="years_active"
-				th:field="*{years_active}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-				
-			<div style="clear: both; display: block; height: 10px;"></div>
+<body class="table-dark">
+	<div class="col-md-5">
+		<h1>Add artist:</h1>
+		<form th:object="${artist}" th:action="@{saveArtist}" action="#"
+			method="post">
+			<table class="table table-striped table-dark">
+				<tr>
+					<td><label for="name">* Name: </label> <input type="text"
+						id="name" th:field="*{name}" /></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+				</tr>
+				<tr>
+					<td><label for="description">Description: </label> <input
+						type="text" id="description" th:field="*{description}" /></td>
+				</tr>
+				<tr>
+					<td><label for="year_formed">* Formed In (Year): </label> <input
+						type="number" id="year_formed" th:field="*{year_formed}" /></td>
+					<td th:if="${#fields.hasErrors('year_formed')}"
+						th:errors="*{year_formed}"></td>
+				</tr>
+				<tr>
+					<td><label for="country">Country?: </label> <input type="text"
+						th:field="*{country}" /></td>
+				</tr>
+				<tr>
+					<td><label for="active">Active? (click for true): </label> <input
+						type="checkbox" th:field="*{active}" /></td>
+				</tr>
+			</table>
+			<div class="col-md-5">
 			<input class="btn btn-success" type="submit" value="Save"></input>
+			</div>
 		</form>
 	</div>
 </body>

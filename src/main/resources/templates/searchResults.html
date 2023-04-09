@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title>Music-Info</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body class="table-dark">
+<div class="row">
+	<div class="column">
+		<table class="table table-striped table-dark">
+		<tr th:each="name : ${names}" >
+			<td th:text="${name}"></td>
+		</tr>
+		</table>
+		</div>
+		<div class="column">
+		<table class="table table-striped table-dark">
+		<tr th:each="length : ${lengths}">
+			<td th:text="${length}"></td>
+		</tr>
+	</table>
+	</div>
+</div>
+<div class="row">
+<div class="column">
+		<table class="table table-striped table-dark">
+		<tr th:each="artistName : ${artistNames}">
+		<td>
+    			<span th:if="${artistName == artistName}">Artist: </span>
+			</td>
+			<td th:text="${artistName}"></td>
+		</tr>
+	</table>
+	</div>
+		<div class="column">
+		<table class="table table-striped table-dark">
+		<tr th:each="albumName : ${albumNames}">
+		<td>
+    			<span th:if="${albumName == albumName}">Album: </span>
+			</td>
+			<td th:text="${albumName}"></td>
+		</tr>
+	</table>
+	</div>
+	<div class="column">
+		<table class="table table-striped table-dark">
+		<tr th:each="songName : ${songNames}" >
+			<td>
+    			<span th:if="${songName == songName}">Song: </span>
+			</td>
+			<td th:text="${songName}"></td>
+		</tr>
+		</table>
+		</div>
+</div>
+</body>
+</html>

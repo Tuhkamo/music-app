@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title>Music-Info</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body class="table-dark">
+	<h1>
+		Music-Info: Query <a href="/index" class="btn btn-info">Return</a>
+	</h1>
+	<div class="col-md-5">
+		<form method="get" th:action="@{/searchByArtist}">
+			<label for="likeInput">Search For Songs By Artist: </label> <input
+				type="text" th:name="input">
+			<button type="submit">Search</button>
+		</form>
+		<form method="get" th:action="@{/searchByAlbum}">
+			<label for="likeInput">Search For Songs By Album: </label> <input
+				type="text" th:name="input">
+			<button type="submit">Search</button>
+		</form>
+		<form method="get" th:action="@{/searchLongerThan}">
+			<label for="longerThan">Search Songs with Longer Length Than:
+			</label> <input type="number" th:name="length" th:value="length" step="0.01">
+			<button type="submit">Search</button>
+		</form>
+		<form method="get" th:action="@{/searchLikeInput}">
+			<label for="likeInput">Search For Anything That Starts With:
+			</label> <input type="text" th:name="input" maxlength="1" size="1">
+			<button type="submit">Search</button>
+		</form>
+	</div>
+</body>
+</html>
