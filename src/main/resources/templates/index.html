@@ -84,7 +84,7 @@
 					th:text="${#numbers.formatDecimal(song.length, 0, 'COMMA', 2, 'POINT')}"></td>
 				<td th:text="${song.bpm}"></td>
 				<td th:text="${song.getAlbum().getName()}"></td>
-				<td th:text="${song.getArtist().getName()}"></td>
+				<td th:text="${song.getAlbum().getArtist().getName()}"></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/deleteSong/{id}(id=${song.song_id})}"
 					class="btn btn-xs btn-danger">Delete Song</a></td>

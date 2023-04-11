@@ -34,20 +34,14 @@ public class Song {
 	@JoinColumn(name = "album_id")
 	private Album album;
 	
-	@ManyToOne
-	@JsonIgnoreProperties ("songs")
-	@JoinColumn(name = "artist_id")
-	private Artist artist;
-	
 	public Song() {}
 
-	public Song(String name, Double length, int bpm, Album album, Artist artist) {
+	public Song(String name, Double length, int bpm, Album album) {
 		super();
 		this.name = name;
 		this.length = length;
 		this.bpm = bpm;
 		this.album = album;
-		this.artist = artist;
 	}
 
 	public Long getSong_id() {
@@ -89,18 +83,10 @@ public class Song {
 	public void setAlbum(Album album) {
 		this.album = album;
 	}
-
-	public Artist getArtist() {
-		return artist;
-	}
-
-	public void setArtist(Artist artist) {
-		this.artist = artist;
-	}
 	
 	@Override
 	public String toString() {
-		return "Song [id=" + song_id + ", name=" + name + ", length=" + length + ", bpm=" + bpm + ", album=" + this.getAlbum().getName() + ", artist=" + this.getArtist().getName() +"]";
+		return "Song [id=" + song_id + ", name=" + name + ", length=" + length + ", bpm=" + bpm + ", album=" + this.getAlbum().getName() + ", artist=" + this.getAlbum().getArtist().getName()+"]";
 	}
 	
 	

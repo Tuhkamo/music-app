@@ -1,19 +1,9 @@
 package hh.music.app.web;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,16 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import hh.music.app.Application;
 import hh.music.app.domain.Album;
-import hh.music.app.domain.AlbumCover;
-import hh.music.app.domain.AlbumCoverRepository;
 import hh.music.app.domain.AlbumRepository;
 import hh.music.app.domain.Artist;
 import hh.music.app.domain.ArtistRepository;
@@ -50,9 +33,6 @@ public class MusicController {
 
 	@Autowired
 	private ArtistRepository artRepo;
-
-	@Autowired
-	private AlbumCoverRepository albumCoverRepository;
 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -96,7 +76,6 @@ public class MusicController {
 	@GetMapping("/addSong")
 	public String addSong(Model model) {
 		model.addAttribute("song", new Song());
-		model.addAttribute("artists", artRepo.findAll());
 		model.addAttribute("albums", albRepo.findAll());
 		return "addSong";
 	}
@@ -155,7 +134,7 @@ public class MusicController {
 		}
 	}
 
-	@GetMapping("/song/{id}")
+	@GetMapping("/songs/{id}")
 	public @ResponseBody Optional<Song> findBookRestById(@PathVariable("id") Long song_id) {
 		return sRepo.findById(song_id);
 	}
@@ -175,8 +154,9 @@ public class MusicController {
 		return (List<Artist>) artRepo.findAll();
 	}
 
-	@GetMapping("/upload")
-	public String upload() {
+	/*
+	 * @GetMapping("/upload")
+		public String upload() {
 		return "upload";
 	}
 
@@ -186,7 +166,8 @@ public class MusicController {
 		return "albumcovers";
 	}
 
-	/*
+	 *
+	 * 
 	 * @PostMapping("/upload") public String handleFileUpload(@RequestParam("file")
 	 * MultipartFile file,
 	 * 
@@ -207,6 +188,8 @@ public class MusicController {
 	public String search(Model model) {
 		return "search";
 	}
+	
+	// Get requests for user inputted queries
 
 	@GetMapping("/searchLongerThan")
 	public String getLongerLength(@RequestParam("length") Double length, Model model) {
@@ -233,6 +216,13 @@ public class MusicController {
 	@GetMapping("/searchByArtist")
 	public String getByArtist(@RequestParam("input") String input, Model model) {
 		model.addAttribute("names", sRepo.getSongsFromArtist(input));
+		return "searchResults";
+	}
+	
+	@GetMapping("/searchAlbumAvgBpm")
+	public String getAlbumAvgBpm(@RequestParam("input") String input, Model model) {
+		model.addAttribute("lengths", sRepo.getAlbumAvgBpm(input));
+		model.addAttribute("names", albRepo.getNameLikeInput(input));
 		return "searchResults";
 	}
 

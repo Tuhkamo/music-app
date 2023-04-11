@@ -13,22 +13,27 @@
 	</h1>
 	<div class="col-md-5">
 		<form method="get" th:action="@{/searchByArtist}">
-			<label for="likeInput">Search For Songs By Artist: </label> <input
+			<label for="likeInput">Search for Songs by Artist: </label> <input
 				type="text" th:name="input">
 			<button type="submit">Search</button>
 		</form>
 		<form method="get" th:action="@{/searchByAlbum}">
-			<label for="likeInput">Search For Songs By Album: </label> <input
+			<label for="likeInput">Search for Songs by Album: </label> <input
+				type="text" th:name="input">
+			<button type="submit">Search</button>
+		</form>
+		<form method="get" th:action="@{/searchAlbumAvgBpm}">
+			<label for="likeInput">Search the Average BPM of Album: </label> <input
 				type="text" th:name="input">
 			<button type="submit">Search</button>
 		</form>
 		<form method="get" th:action="@{/searchLongerThan}">
-			<label for="longerThan">Search Songs with Longer Length Than:
+			<label for="longerThan">Search Songs with Longer Length than:
 			</label> <input type="number" th:name="length" th:value="length" step="0.01">
 			<button type="submit">Search</button>
 		</form>
 		<form method="get" th:action="@{/searchLikeInput}">
-			<label for="likeInput">Search For Anything That Starts With:
+			<label for="likeInput">Search for Anything That Starts With:
 			</label> <input type="text" th:name="input" maxlength="1" size="1">
 			<button type="submit">Search</button>
 		</form>

@@ -33,13 +33,6 @@
 								th:value="${album.album_id}" th:text="${album.name}"></option>
 					</select></td>
 				</tr>
-				<tr>
-					<td><label for="artistlist">* Artist: </label> <select
-						id="artistlist" th:field="*{artist}" class="form-control">
-							<option th:each="artist : ${artists}"
-								th:value="${artist.artist_id}" th:text="${artist.name}"></option>
-					</select></td>
-				</tr>
 			</table>
 			<div class="col-md-5">
 			<input class="btn btn-success" type="submit" value="Save"></input>
