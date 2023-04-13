@@ -23,31 +23,38 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
+
 	@Bean
-	public CommandLineRunner musicDemo(SongRepository srepo, AlbumRepository albrepo, ArtistRepository artrepo, UserRepository urepo) {
+	public CommandLineRunner musicDemo(SongRepository srepo, AlbumRepository albrepo, ArtistRepository artrepo,
+			UserRepository urepo) {
 		return (args) -> {
 			log.info("Saving test Artists");
 			
-			Artist artist1 = new Artist("System of a Down", 1994, "System of a Down (also known as SoaD or simply System) is an American heavy metal band formed in Glendale, California, in 1994.", "USA", true);
-			Artist artist2 = new Artist("HOME", 2012, "Randall Goffe, more commonly known as HOME, is a Synthwave/Chillwave artist from Punta Gorda, Florida. HOME's music is very influenced by 70s and 80s music, layered with a bit of Chiptune and Chillsynth.", "USA", true);
+			// Setting up test data for repositories to be displayed at localhost:8080/index
+			
+			Artist artist1 = new Artist("System of a Down", 1994,
+					"System of a Down (also known as SoaD or simply System) is an American heavy metal band formed in Glendale, California, in 1994.",
+					"USA", true);
+			Artist artist2 = new Artist("HOME", 2012,
+					"Randall Goffe, more commonly known as HOME, is a Synthwave/Chillwave artist from Punta Gorda, Florida. HOME's music is very influenced by 70s and 80s music, layered with a bit of Chiptune and Chillsynth.",
+					"USA", true);
 			artrepo.save(artist1);
 			artrepo.save(artist2);
-			
+
 			log.info("fetching all artists");
 			for (Artist artist : artrepo.findAll()) {
 				log.info(artist.toString());
 			}
-			
+
 			log.info("Saving test Albums");
 			Album album1 = new Album("Toxicity", "Alternative Metal", 44.01, 1996, artist1);
 			Album album2 = new Album("Odyssey", "Synthwave", 47.48, 2014, artist2);
 			albrepo.save(album1);
 			albrepo.save(album2);
-			
+
 			User user1 = new User("admin", "$2a$10$BLIn0lduNSlBQmmLKypjj.y9Edo23JsmLX.XULxYPa1inuKAGhXc6", "ADMIN");
 			urepo.save(user1);
-			
+
 			log.info("Saving test Songs");
 			srepo.save(new Song("Prison Song", 3.21, 100, album1));
 			srepo.save(new Song("Needles", 3.14, 94, album1));
@@ -63,7 +70,7 @@ public class Application {
 			srepo.save(new Song("Psycho", 3.46, 146, album1));
 			srepo.save(new Song("Aerials", 3.55, 79, album1));
 			srepo.save(new Song("Arto", 2.14, 123, album1));
-			
+
 			srepo.save(new Song("Intro", 3.09, 100, album2));
 			srepo.save(new Song("Native", 4.02, 100, album2));
 			srepo.save(new Song("Decay", 4.11, 180, album2));
@@ -76,8 +83,7 @@ public class Application {
 			srepo.save(new Song("Come Back Down", 4.53, 95, album2));
 			srepo.save(new Song("Half Moon", 4.21, 140, album2));
 			srepo.save(new Song("On The Way Out", 4.01, 127, album2));
-			
-			
+
 			log.info("fetch all songs");
 			for (Song song : srepo.findAll()) {
 				log.info(song.toString());

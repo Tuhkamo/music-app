@@ -28,6 +28,7 @@
 				<td th:text="${artist.name}"></td>
 				<td th:text="${artist.year_formed}"></td>
 				<td th:text="${artist.description}"></td>
+				<td th:text="${artist.country}"></td>
 				<td th:text="${artist.active}"></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/deleteArtist/{id}(id=${artist.artist_id})}"

@@ -4,10 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotEmpty;
 
+// Defunct Entity I tried to use for saving images of album covers
 @Entity
 public class AlbumCover {
 
@@ -81,9 +80,4 @@ public class AlbumCover {
 	public void setAlbum_id(Long album_id) {
 		this.album_id = album_id;
 	}
-
-	
-
-	
-	
 }

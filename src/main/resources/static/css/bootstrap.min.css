@@ -214,8 +214,9 @@ caption {
 	caption-side: bottom
 }
 
-th {
-	text-align: inherit
+th, td {
+	text-align: inherit;
+	border: 1px solid black;
 }
 
 label {

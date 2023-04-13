@@ -31,6 +31,7 @@
 				<th scope="col">Artists</th>
 				<th scope="col">Formed In / Started</th>
 				<th scope="col">Description</th>
+				<th scope="col">Nationality</th>
 				<th scope="col">Are they active? (true/false)</th>
 				<th sec:authorize="hasAuthority('ADMIN')"><a href="/addArtist"
 					class="btn btn-success">Add Artist</a></th>
@@ -40,11 +41,13 @@
 				<td th:text="${artist.name}"></td>
 				<td th:text="${artist.year_formed}"></td>
 				<td th:text="${artist.description}"></td>
+				<td th:text="${artist.country}"></td>
 				<td th:text="${artist.active}"></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/deleteArtist/{id}(id=${artist.artist_id})}"
 					class="btn btn-xs btn-danger">Delete Artist</a></td>
 			</tr>
+			<tr> <td>&nbsp;</td> </tr>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Albums</th>
@@ -67,6 +70,7 @@
 					th:href="@{/deleteAlbum/{id}(id=${album.album_id})}"
 					class="btn btn-xs btn-danger">Delete Album</a></td>
 			</tr>
+			<tr> <td>&nbsp;</td> </tr>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Songs</th>

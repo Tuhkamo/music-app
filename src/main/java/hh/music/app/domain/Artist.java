@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+// For the scope of this project artist and band/group are used as synonyms
 @Entity
 public class Artist {
 
