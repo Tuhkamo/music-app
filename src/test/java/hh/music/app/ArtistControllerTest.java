@@ -1,4 +1,4 @@
-package controllerTests;
+package hh.music.app;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
