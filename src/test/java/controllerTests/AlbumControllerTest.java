@@ -1,5 +1,6 @@
-package hh.music.app;
+package controllerTests;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -8,11 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 
 import hh.music.app.domain.Album;
 import hh.music.app.domain.AlbumRepository;
@@ -20,6 +25,8 @@ import hh.music.app.domain.Artist;
 import hh.music.app.domain.ArtistRepository;
 import hh.music.app.web.AlbumController;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class AlbumControllerTest {
 
 	@Mock
@@ -39,7 +46,12 @@ public class AlbumControllerTest {
 
 	@BeforeEach
 	public void setup() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
+	}
+	
+	@Test
+	public void contextLoads() {
+		assertThat(albumController).isNotNull();
 	}
 
 	@Test
@@ -47,7 +59,7 @@ public class AlbumControllerTest {
 		List<Album> albumList = new ArrayList<>();
 		albumList.add(new Album());
 		when(albumRepository.findAll()).thenReturn(albumList);
-		assertEquals("albumList", albumController.albums(model));
+		assertThat("albumList".equals(albumController.albums(model)));
 	}
 
 	@Test
@@ -55,13 +67,13 @@ public class AlbumControllerTest {
 		List<Artist> artistList = new ArrayList<>();
 		artistList.add(new Artist());
 		when(artistRepository.findAll()).thenReturn(artistList);
-		assertEquals("addAlbum", albumController.addAlbum(model));
+		assertThat("addAlbum".equals(albumController.addAlbum(model)));
 	}
 
 	@Test
 	public void testDeleteAlbum() {
 		Long id = 1L;
-		assertEquals("redirect:../index", albumController.deleteAlbum(id, model));
+		assertThat("redirect:../index".equals(albumController.deleteAlbum(id, model)));
 	}
 
 	@Test
@@ -69,7 +81,7 @@ public class AlbumControllerTest {
 		Album album = new Album();
 		when(bindingResult.hasErrors()).thenReturn(false);
 		when(albumRepository.save(any(Album.class))).thenReturn(album);
-		assertEquals("redirect:/index", albumController.saveAlbum(album, bindingResult, model));
+		assertThat("redirect:/index".equals(albumController.saveAlbum(album, bindingResult, model)));
 	}
 
 	@Test
@@ -77,7 +89,7 @@ public class AlbumControllerTest {
 		List<Album> albumList = new ArrayList<>();
 		albumList.add(new Album());
 		when(albumRepository.findAll()).thenReturn(albumList);
-		assertEquals(albumList, albumController.albumListRest());
+		assertThat(albumList.equals(albumController.albumListRest()));
 	}
 
 }
