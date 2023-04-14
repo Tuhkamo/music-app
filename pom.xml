@@ -9,7 +9,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>hh</groupId>
-	<artifactId>music.app</artifactId>
+	<artifactId>music-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>music.app</name>
 	<description>Music project for storing and displaying artist/album/song data</description>
