@@ -7,11 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SongRepository extends CrudRepository<Song, Long> {
 	
-	@Query("SELECT name FROM Song where length > ?1 ORDER BY length ASC")
-	List<String> getLongerLengthName(Double length);
-	
 	@Query("SELECT length FROM Song WHERE length > ?1 ORDER BY length ASC")
 	List<String> getLongerLength(Double length);
+	
+	@Query("SELECT name FROM Song where length > ?1 ORDER BY length ASC")
+	List<String> getLongerLengthName(Double length);
 	
 	@Query("SELECT name FROM Song where LOWER(name) LIKE ?1% OR UPPER(name) LIKE ?1%")
 	List<String> getNameLikeInput(String input);
@@ -34,5 +34,5 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 			+ "JOIN Album alb ON s.album = alb "
 			+ "WHERE LOWER(alb.name) LIKE ?1% OR UPPER(alb.name) LIKE ?1%")
 	List<Float> getAlbumAvgBpm(String input);
-	
+
 }

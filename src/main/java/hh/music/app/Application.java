@@ -29,9 +29,9 @@ public class Application {
 			UserRepository urepo) {
 		return (args) -> {
 			log.info("Saving test Artists");
-			
+
 			// Setting up test data for repositories to be displayed at localhost:8080/index
-			
+
 			Artist artist1 = new Artist("System of a Down", 1994,
 					"System of a Down (also known as SoaD or simply System) is an American heavy metal band formed in Glendale, California, in 1994.",
 					"USA", true);

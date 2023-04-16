@@ -1,10 +1,9 @@
-package hh.music.app;
+package hh.music.app.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,11 +19,8 @@ import org.springframework.validation.BindingResult;
 
 import hh.music.app.domain.Album;
 import hh.music.app.domain.AlbumRepository;
-import hh.music.app.domain.Artist;
-import hh.music.app.domain.ArtistRepository;
 import hh.music.app.domain.Song;
 import hh.music.app.domain.SongRepository;
-import hh.music.app.web.SongController;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

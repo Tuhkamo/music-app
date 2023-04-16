@@ -56,6 +56,14 @@ public class Album {
 		this.year = year;
 		this.artist = artist;
 	}
+	
+	public Album(String name, String genre, Double length, Integer year) {
+		super();
+		this.name = name;
+		this.genre = genre;
+		this.length = length;
+		this.year = year;
+	}
 
 	public Long getAlbum_id() {
 		return album_id;

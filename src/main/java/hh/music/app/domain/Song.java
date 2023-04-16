@@ -42,6 +42,13 @@ public class Song {
 		this.bpm = bpm;
 		this.album = album;
 	}
+	
+	public Song(String name, Double length, int bpm) {
+		super();
+		this.name = name;
+		this.length = length;
+		this.bpm = bpm;
+	}
 
 	public Long getSong_id() {
 		return song_id;

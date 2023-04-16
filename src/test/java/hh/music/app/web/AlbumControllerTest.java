@@ -1,7 +1,6 @@
-package hh.music.app;
+package hh.music.app.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -23,7 +22,6 @@ import hh.music.app.domain.Album;
 import hh.music.app.domain.AlbumRepository;
 import hh.music.app.domain.Artist;
 import hh.music.app.domain.ArtistRepository;
-import hh.music.app.web.AlbumController;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

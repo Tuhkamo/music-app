@@ -1,4 +1,4 @@
-package hh.music.app;
+package hh.music.app.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -19,12 +19,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import hh.music.app.domain.Album;
 import hh.music.app.domain.AlbumRepository;
 import hh.music.app.domain.Artist;
 import hh.music.app.domain.ArtistRepository;
 import hh.music.app.domain.SongRepository;
-import hh.music.app.web.ArtistController;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -34,10 +32,10 @@ public class ArtistControllerTest {
     private SongRepository songRepository;
 
     @Mock
-    private ArtistRepository artistRepository;
+	private AlbumRepository albumRepository;
 
-    @Mock
-    private AlbumRepository albumRepository;
+	@Mock
+	private ArtistRepository artistRepository;
 
     @Mock
     private Model model;

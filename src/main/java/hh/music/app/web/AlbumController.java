@@ -25,6 +25,7 @@ public class AlbumController {
 
 	@Autowired
 	private ArtistRepository artistRepository;
+	
 
 	// Get-method used for displaying album data on the albumList.html page
 	@GetMapping("/albumList")
