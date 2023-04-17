@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h1>File upload demo / Not in use</h1>
+	<form method="post" enctype="multipart/form-data"
+		th:action="@{/upload}">
+		<div class="form-group">
+			<label for="album_id">Album ID:</label> <input type="text"
+				id="album_id" name="album_id" required>
+		</div>
+		<div class="form-group">
+			<label for="file">Choose a file:</label> <input type="file" id="file"
+				name="file" accept="image/jpeg,image/png" required>
+		</div>
+		<button type="submit">Upload</button>
+	</form>
+</body>
+</html>

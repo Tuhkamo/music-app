@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title>Music-Info</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body class="table-dark">
+	<div class="col-md-11">
+		<h1>
+			Music-Info: Albums <a href="/search" class="btn btn-info">Query Music
+				Data</a> <a href="/index" class="btn btn-info">Return</a>
+		</h1>
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Albums</th>
+				<th scope="col">Genre</th>
+				<th scope="col">Release Year</th>
+				<th scope="col">Length</th>
+				<th scope="col">Artist</th>
+				<th sec:authorize="hasAuthority('ADMIN')"><a href="/addAlbum"
+					class="btn btn-success">Add Album</a></th>
+			</tr>
+			<tr th:each="album : ${albums}">
+				<td th:text="${album.album_id}"></td>
+				<td th:text="${album.name}"></td>
+				<td th:text="${album.genre}"></td>
+				<td th:text="${album.year}"></td>
+				<td
+					th:text="${#numbers.formatDecimal(album.length, 0, 'COMMA', 2, 'POINT')}"></td>
+				<td th:text="${album.getArtist().getName()} ?: 'UNKNOWN'"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/deleteAlbum/{id}(id=${album.album_id})}"
+					class="btn btn-xs btn-danger"> Delete Album </a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
