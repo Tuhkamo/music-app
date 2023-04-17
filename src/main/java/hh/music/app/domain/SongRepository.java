@@ -35,7 +35,7 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 	List<String> getSongsFromArtist(String input);
 	
 	@Query("SELECT AVG(s.bpm) "
-			+ "FROM Song s "
+			+ "FROM Song s "	
 			+ "JOIN Album alb ON s.album = alb "
 			+ "WHERE LOWER(alb.name) LIKE LOWER(concat(?1, '%'))"
 			+ "OR UPPER(alb.name) LIKE UPPER(concat(?1, '%'))")
