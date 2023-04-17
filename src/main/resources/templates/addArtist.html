@@ -28,8 +28,10 @@
 						th:errors="*{year_formed}"></td>
 				</tr>
 				<tr>
-					<td><label for="country">Nationality?: </label> <input type="text"
-						th:field="*{country}" /></td>
+					<td><label for="country">* Nationality?: </label> <input
+						type="text" th:field="*{country}" /></td>
+					<td th:if="${#fields.hasErrors('country')}"
+						th:errors="*{country}"></td>
 				</tr>
 				<tr>
 					<td><label for="active">Active? (click for true): </label> <input
@@ -37,7 +39,7 @@
 				</tr>
 			</table>
 			<div class="col-md-5">
-			<input class="btn btn-success" type="submit" value="Save"></input>
+				<input class="btn btn-success" type="submit" value="Save"></input>
 			</div>
 		</form>
 	</div>

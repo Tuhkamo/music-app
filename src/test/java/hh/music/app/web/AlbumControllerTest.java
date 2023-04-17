@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
 import hh.music.app.domain.Album;
@@ -23,7 +21,6 @@ import hh.music.app.domain.AlbumRepository;
 import hh.music.app.domain.Artist;
 import hh.music.app.domain.ArtistRepository;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class AlbumControllerTest {
 

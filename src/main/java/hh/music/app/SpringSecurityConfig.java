@@ -23,7 +23,7 @@ public class SpringSecurityConfig {
         http
                 .authorizeHttpRequests()
                 // These pages will be permitted to view without signing in as admin
-                .requestMatchers("/css/**", "index", "search", "searchResults").permitAll() // Enable css when logged
+                .requestMatchers("/css/**", "/**").permitAll() // Enable css when logged
                 // out
                 .requestMatchers("/").permitAll().requestMatchers("/h2-console/**").permitAll().anyRequest()
                 .authenticated().and().formLogin().defaultSuccessUrl("/index", true).permitAll().and().logout()
